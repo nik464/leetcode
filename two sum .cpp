@@ -1,25 +1,24 @@
-#include<stdio.h>
-#include<iostream>
 #include<vector>
+#include<iostream>
+#include <unordered_map>
 using namespace std;
 
-class Solution
+
+class solution
 {
-    public:
-    vector<int> twoSums(vector<int>nums, int target)
-    {
-         int s=nums.size();
-         int sum=0;
-         for(int i=0;i<s;i++)
-         {
-             for(int j=i+1;j<s;j++)
-              {   sum=nums[i]+nums[j];
-                  if(sum==target)
-                  {
-                      return {i,j};
-                  }
-              }
-         }
-         return {};
+
+    vector<int> twoSum(vector<int> &nums, int t)
+    {   unordered_map<int,int> m;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            int x = nums[i];
+            int y = t - x;
+            if (m.find(y) != m.end())
+            {
+                return {i, m[y]};
+            }
+            m[nums[i]] = i;
+        }
+        return {-1, -1};
     }
 };
